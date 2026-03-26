@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+padding:0;
+background:black;
+color:white;
+font-family:'Playfair Display', serif;
+text-align:center;
+overflow:hidden;
+}
+
+/* PAGE */
+.page{
+display:none;
+height:100vh;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background-size:cover;
+background-position:center;
+transition: background 0.8s ease;
+}
+
+.active{
+display:flex;
+}
+
+/* OVERLAY */
+.overlay{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.65);
+}
+
+/* TEXT */
+.text{
+font-size:30px;
+z-index:2;
+max-width:80%;
+line-height:1.7;
+animation:fadeIn 1.5s ease;
+}
+
+.text span{
+display:block;
+margin-top:12px;
+font-size:20px;
+opacity:0.85;
+}
+
+/* BUTTON */
+.btn{
+margin-top:30px;
+padding:12px 30px;
+border:1px solid white;
+background:transparent;
+color:white;
+cursor:pointer;
+transition:0.3s;
+z-index:2;
+}
+
+.btn:hover{
+background:white;
+color:black;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(20px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* FINAL TEXT */
+.final{
+font-family:'Great Vibes', cursive;
+font-size:40px;
+color:#ff4d6d;
+}
+
+/* SECRET */
+#secret{
+display:none;
+margin-top:25px;
+font-size:20px;
+opacity:0.9;
+transition:opacity 1s;
+z-index:2;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGES -->
+<div id="p1" class="page active">
+<div class="overlay"></div>
+<div class="text">
+You’re not my wife…
+<span>
+But somehow, you became a part of my everyday life so naturally,  
+like something I didn’t plan… but now couldn’t imagine missing.
+</span>
+</div>
+<button class="btn" onclick="nextPage(2)">Continue</button>
+</div>
+
+<div id="p2" class="page">
+<div class="overlay"></div>
+<div class="text">
+…but you care like one.
+<span>
+In the quiet moments, in the smallest ways,  
+you show a kind of care that most people don’t even think about giving.
+</span>
+</div>
+<button class="btn" onclick="nextPage(3)">Continue</button>
+</div>
+
+<div id="p3" class="page">
+<div class="overlay"></div>
+<div class="text">
+…you check on me like one.
+<span>
+A simple “are you okay?” from you  
+somehow carries more comfort than long conversations ever could.
+</span>
+</div>
+<button class="btn" onclick="nextPage(4)">Continue</button>
+</div>
+
+<div id="p4" class="page">
+<div class="overlay"></div>
+<div class="text">
+…and sometimes you act like one 😂
+<span>
+The little arguments, the random moments, the way you react…  
+it’s funny, but at the same time, it makes everything feel real.
+</span>
+</div>
+<button class="btn" onclick="nextPage(5)">Continue</button>
+</div>
+
+<div id="p5" class="page">
+<div class="overlay"></div>
+<div class="text">
+But honestly…
+<span>
+Not everything needs a label to have meaning,  
+and not every connection needs a name to be important.
+</span>
+</div>
+<button class="btn" onclick="nextPage(6)">Continue</button>
+</div>
+
+<div id="p6" class="page">
+<div class="overlay"></div>
+<div class="text final" onclick="showSecret()">
+I’m really lucky to have you in my life ❤️
+<span>
+Because some people just walk in quietly…  
+and end up becoming something you never want to lose.
+</span>
+</div>
+<div id="secret">
+Just don’t disappear on me, okay?
+</div>
+</div>
+
+<script>
+// Tulip background images (all tested and working)
+const backgrounds = [
+  "https://images.pexels.com/photos/6931633/pexels-photo-6931633.jpeg", // page 1
+  "https://images.pexels.com/photos/6965942/pexels-photo-6965942.jpeg", // page 2
+  "https://images.pexels.com/photos/8354500/pexels-photo-8354500.jpeg", // page 3
+  "https://images.pexels.com/photos/6931626/pexels-photo-6931626.jpeg", // page 4
+  "https://images.pexels.com/photos/6931633/pexels-photo-6931633.jpeg", // page 5
+  "https://images.pexels.com/photos/6965942/pexels-photo-6965942.jpeg"  // page 6
+];
+
+function nextPage(num){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const page = document.getElementById('p' + num);
+  page.classList.add('active');
+  
+  // Set tulip background
+  if(backgrounds[num-1]){
+    page.style.backgroundImage = "url('" + backgrounds[num-1] + "')";
+  }
+}
+
+function showSecret(){
+  let msg = document.getElementById("secret");
+  msg.style.display = "block";
+  msg.style.opacity = "1";
+}
+
+// Initialize first page background
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById('p1').style.backgroundImage = "url('" + backgrounds[0] + "')";
+});
+</script>
+
+</body>
+</html>
